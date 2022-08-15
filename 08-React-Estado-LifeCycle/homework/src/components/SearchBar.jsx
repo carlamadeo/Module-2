@@ -10,11 +10,13 @@ export default function SearchBar({onSearch}) {
       onSubmit={(e) => {
         e.preventDefault();
         onSearch(city);
+        setCity("");
       }}>
 
       <input className="form-control mr-sm-2"
         type="text"
         placeholder="Ciudad..."
+        value={city}
         onChange={e => setCity(e.target.value)}
       />
 
