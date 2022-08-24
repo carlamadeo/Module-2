@@ -6,10 +6,14 @@ class Counter extends Component {
     // Extra Credit
     incrementIfOdd = () => {
       //Implementar una función de incremento que sólo aumenta si el valor del contador es impar
+      if(this.props.count % 2 !== 0){
+        this.props.increment();
+      }
     };
     // Extra Credit
     incrementAsync = () => {
         //  Implementar una función de incremento que aumenta después de esperar un segundo
+        setTimeout(this.props.increment , 1000);
     };
 
     render() {
@@ -18,19 +22,19 @@ class Counter extends Component {
         return (
             <p>
                 Clickeado: {this.props.count} veces
-                <button onClick={() => {/* Completar */ }}>
+                <button onClick={() => { this.props.increment() }}>
                     + {/* Incremeta */}
                 </button>
-                <button onClick={() => {/* Completar */ }}>
+                <button onClick={() => { this.props.decrement() }}>
                     -  {/* Decrementa */}
                 </button>
                  {/* Si quieres hacer los extra credit puede descomentar las lineas de abajo */}
-                {/* <button onClick={this.incrementIfOdd}>
+                <button onClick={this.incrementIfOdd}>
                     incrementa si es impar
                 </button>
                 <button onClick={this.incrementAsync}>
                     Incrementa despues de un segundos
-                </button>  */}
+                </button>
             </p>
         );
     }
@@ -41,6 +45,10 @@ class Counter extends Component {
 // este componente recibe el estado completo.
 // Sin embargo, en una aplicación redux más compleja,
 // recibiría sólo las partes relevantes que necesita del objeto de estado.
+
+// Esto lo que hace es pasarle al objeto la propiedad que necesito del store. Es como si hiciera <Counter count={store.getState().count} />
+// Mi store podría tener otras propiedades aparte de count, pero solo me importa count en este caso, por eso traigo solo esa
+// Embebe dentro del componente una propiedad que se llama count
 const mapStateToProps = (state) => {
     return {
         count: state.count
@@ -51,4 +59,6 @@ const mapStateToProps = (state) => {
 // Sin esto, este componente es sólo un componente tonto de React.
 //Pasamos todas las funciones que dependen de Redux, junto con el propio componente,
 // para que Redux se dé a conocer a este componente.
+
+// La segunda propiedad se puede usar de varias maneras, es el mapDispatchToProps
 export default connect(mapStateToProps, { increment, decrement })(Counter);
