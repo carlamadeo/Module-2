@@ -55,11 +55,12 @@ function App() {
   
   return (
     <div className='App'>
-      <Nav onSearch={onSearch} />
       <Routes>
-        <Route path='/' element={<Cards cities={cities} onClose={onClose} />} />
-        <Route path='/about' element={<About />} />
-        <Route path="/city/:id" element={<City onFilter={onFilter}/>} />
+        <Route path='/' element={<Nav onSearch={onSearch}/>}>
+          <Route index element={<Cards cities={cities} onClose={onClose} />} />
+          <Route path='/about' element={<About />} />
+          <Route path="/city/:id" element={<City onFilter={onFilter}/>} />
+        </Route>
       </Routes>
     </div>
   );
