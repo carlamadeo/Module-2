@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import Favorites from "./components/Favorites/Favorites";
-import Buscador from "./components/Buscador/Buscador";
-import NavBar from "./components/NavBar/NavBar";
-import { Route } from "react-router-dom";
-import Movie from "./components/Movie/Movie";
+import Favourites from './components/Favourites/Favourites';
+import Buscador from './components/Buscador/Buscador';
+import NavBar from './components/NavBar/NavBar';
+import { Route } from 'react-router-dom';
+import Movie from './components/Movie/Movie';
 
 function App() {
   return (
       <React.Fragment>
           <NavBar />
-          <Route exact path="/" component={Buscador} />
-          <Route path="/favs" component={Favorites} />
-          <Route path="/movie/:id" component={Movie} />
+          <Route exact path='/' component={Buscador} />
+          <Route path='/favs' component={Favourites} />
+          <Route path='/movie/:id' component={Movie} />
       </React.Fragment>
   );
 }
